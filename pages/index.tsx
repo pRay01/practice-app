@@ -1,86 +1,62 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+//@ts-nocheck
 
-const Home: NextPage = () => {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+import { useState } from "react"
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+function Logic(){
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+ const[result,setResult]= useState("")
+ const[data,setData]= useState("")
+   
+ function OddEven(){
+    if(Number(data)%2==0){
+      console.log(data, " is even")
+      alert("number is even")
+    }
+    else{
+      console.log(data, "is odd")
+      alert("number is odd")
+    }
+ }
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+ function  Palindrome(){
+   const input = Number(data);
+   console.log(input, 'input')
+   var final = 0;
+   for(var i=input; i>0; i=Number(i/10).toFixed(0) ){
+     const remainder = i%10; 
+     console.log(remainder, 'remainder');
+     final = final * 10 + remainder;
+     console.log(final, 'final')
+   }
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+ }
+ function Reverse(){
+   let newString = "";
+   for( var i = data.length - 1; i>=0;i-- )
+   {
+     newString = newString + data.charAt(i);
+     console.log(newString,"reverse")
+   }
+ }
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+
+  return(
+    <div className="bg-red-300 w-4/12">
+        <div >
+           <input  value={data} onChange={(e)=>setData(e.target.value)} className="w-full h-10 text-right border border-black rounded-xl"/>
         </div>
-      </main>
-
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center gap-2"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-        </a>
-      </footer>
+        <button  onClick={OddEven}  className="px-6 mr-6 rounded-xl bg-yellow-300">
+            Odd/Even
+        </button>
+        <button onClick={Palindrome} className="px-6 rounded-xl bg-yellow-300">
+           Palindrome
+        </button>
+        <button onClick={Reverse} className="px-6 ml-6 rounded-xl bg-yellow-300">
+           Reverse
+        </button>
     </div>
   )
 }
 
-export default Home
+export default Logic
